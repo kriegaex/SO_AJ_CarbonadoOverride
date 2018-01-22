@@ -82,4 +82,13 @@ public class CarbonadoTest {
     assertEquals(storage.query().count(), 0);
   }
 
+  @Test
+  public void aspectCreatesNonExistentRecord() throws SupportException, RepositoryException {
+    message.setID(1);
+    // Without the aspect this would be false
+    assertTrue(message.tryLoad());
+    assertEquals(message.getID(), 1);
+    assertEquals(message.getMessage(), null);
+  }
+
 }
